@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CherryRestaurant.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241012100207_tagsInitdasdadd")]
-    partial class tagsInitdasdadd
+    [Migration("20250212190008_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,11 +35,17 @@ namespace CherryRestaurant.API.Migrations
                     b.Property<int?>("ClientId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<double>("Discount")
+                        .HasColumnType("REAL");
+
                     b.Property<int?>("EmployeeId")
                         .HasColumnType("INTEGER");
 
                     b.Property<double>("ExchangeRepaied")
                         .HasColumnType("REAL");
+
+                    b.Property<int?>("IsRefund")
+                        .HasColumnType("INTEGER");
 
                     b.Property<double>("PaiedPrice")
                         .HasColumnType("REAL");
@@ -49,9 +55,6 @@ namespace CherryRestaurant.API.Migrations
 
                     b.Property<DateTime>("Time")
                         .HasColumnType("TEXT");
-
-                    b.Property<double>("discount")
-                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 
@@ -259,6 +262,9 @@ namespace CherryRestaurant.API.Migrations
                     b.Property<int?>("InventoryName")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("IsRefund")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("ItemBarcode")
                         .HasColumnType("TEXT");
 
@@ -268,8 +274,8 @@ namespace CherryRestaurant.API.Migrations
                     b.Property<double?>("ItemCostOut")
                         .HasColumnType("REAL");
 
-                    b.Property<string>("ItemId")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("ItemId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ItemName")
                         .HasColumnType("TEXT");
@@ -291,6 +297,9 @@ namespace CherryRestaurant.API.Migrations
 
                     b.Property<int?>("billId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("dateTime")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

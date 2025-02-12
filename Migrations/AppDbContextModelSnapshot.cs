@@ -32,6 +32,9 @@ namespace CherryRestaurant.API.Migrations
                     b.Property<int?>("ClientId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<double>("Discount")
+                        .HasColumnType("REAL");
+
                     b.Property<int?>("EmployeeId")
                         .HasColumnType("INTEGER");
 
@@ -49,9 +52,6 @@ namespace CherryRestaurant.API.Migrations
 
                     b.Property<DateTime>("Time")
                         .HasColumnType("TEXT");
-
-                    b.Property<double>("discount")
-                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CherryRestaurant.API.Migrations
 {
     /// <inheritdoc />
-    public partial class addedImages : Migration
+    public partial class editDiscount : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -42,21 +42,6 @@ namespace CherryRestaurant.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employees",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    MobileNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    Email = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employees", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ExpenseCategories",
                 columns: table => new
                 {
@@ -68,6 +53,39 @@ namespace CherryRestaurant.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ExpenseCategories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HistoryOfCashBill",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ItemName = table.Column<string>(type: "TEXT", nullable: true),
+                    ItemId = table.Column<int>(type: "INTEGER", nullable: true),
+                    ItemBarcode = table.Column<string>(type: "TEXT", nullable: true),
+                    ItemCostIn = table.Column<double>(type: "REAL", nullable: true),
+                    ItemCostOut = table.Column<double>(type: "REAL", nullable: true),
+                    EmployeeName = table.Column<string>(type: "TEXT", nullable: true),
+                    EmployeeId = table.Column<int>(type: "INTEGER", nullable: true),
+                    ClientName = table.Column<string>(type: "TEXT", nullable: true),
+                    ClientId = table.Column<int>(type: "INTEGER", nullable: true),
+                    InventoryName = table.Column<int>(type: "INTEGER", nullable: true),
+                    InventoryId = table.Column<int>(type: "INTEGER", nullable: true),
+                    barcode = table.Column<string>(type: "TEXT", nullable: true),
+                    billId = table.Column<int>(type: "INTEGER", nullable: true),
+                    TraderName = table.Column<string>(type: "TEXT", nullable: true),
+                    TraderId = table.Column<int>(type: "INTEGER", nullable: true),
+                    RequierdPrice = table.Column<double>(type: "REAL", nullable: true),
+                    ClientCashPayed = table.Column<double>(type: "REAL", nullable: true),
+                    ClientRecived = table.Column<double>(type: "REAL", nullable: true),
+                    SoftDeleted = table.Column<int>(type: "INTEGER", nullable: true),
+                    IsRefund = table.Column<int>(type: "INTEGER", nullable: true),
+                    dateTime = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HistoryOfCashBill", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -83,6 +101,21 @@ namespace CherryRestaurant.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Marka", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ParentChildItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ParentItemId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ChildeItemId = table.Column<int>(type: "INTEGER", nullable: false),
+                    NumberOfChildren = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ParentChildItems", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -148,6 +181,33 @@ namespace CherryRestaurant.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TagItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    TagId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ItemId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TagItems", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tags",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tags", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Traders",
                 columns: table => new
                 {
@@ -160,6 +220,26 @@ namespace CherryRestaurant.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Traders", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false),
+                    SecurityLevel = table.Column<int>(type: "INTEGER", nullable: false),
+                    UserType = table.Column<int>(type: "INTEGER", nullable: false),
+                    IsTrader = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsEmployee = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsClient = table.Column<bool>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -180,6 +260,24 @@ namespace CherryRestaurant.API.Migrations
                         principalTable: "Category",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Employees_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -256,8 +354,10 @@ namespace CherryRestaurant.API.Migrations
                     RequierdPrice = table.Column<double>(type: "REAL", nullable: false),
                     PaiedPrice = table.Column<double>(type: "REAL", nullable: false),
                     ExchangeRepaied = table.Column<double>(type: "REAL", nullable: false),
+                    Discount = table.Column<double>(type: "REAL", nullable: false),
                     Time = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ClientDebtId1 = table.Column<int>(type: "INTEGER", nullable: true)
+                    ClientDebtId1 = table.Column<int>(type: "INTEGER", nullable: true),
+                    IsRefund = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -366,7 +466,6 @@ namespace CherryRestaurant.API.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    barcode = table.Column<string>(type: "TEXT", nullable: true),
                     ItemId = table.Column<int>(type: "INTEGER", nullable: false),
                     ImageURL = table.Column<string>(type: "TEXT", nullable: true),
                     AlterText = table.Column<string>(type: "TEXT", nullable: true)
@@ -401,6 +500,11 @@ namespace CherryRestaurant.API.Migrations
                 name: "IX_ClientDebts_EmployeeId",
                 table: "ClientDebts",
                 column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_UserId",
+                table: "Employees",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ExpenseItems_EmployeeId",
@@ -473,16 +577,28 @@ namespace CherryRestaurant.API.Migrations
                 name: "ExpenseItems");
 
             migrationBuilder.DropTable(
+                name: "HistoryOfCashBill");
+
+            migrationBuilder.DropTable(
                 name: "Inventory");
 
             migrationBuilder.DropTable(
                 name: "ItemsImages");
 
             migrationBuilder.DropTable(
+                name: "ParentChildItems");
+
+            migrationBuilder.DropTable(
                 name: "Salarys");
 
             migrationBuilder.DropTable(
                 name: "ShipmentImage");
+
+            migrationBuilder.DropTable(
+                name: "TagItems");
+
+            migrationBuilder.DropTable(
+                name: "Tags");
 
             migrationBuilder.DropTable(
                 name: "ExpenseCategories");
@@ -516,6 +632,9 @@ namespace CherryRestaurant.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }
