@@ -25,6 +25,13 @@ public class EmployeeController : ControllerBase
         var salary = await _mediator.Send(command);
         return Ok(salary);
     }
+    [HttpPost("addPaylater")]
+    public async Task<ActionResult<EmployeeDTO>> addPayLater([FromBody] PayLaterDTO payLaterDTO)
+    {
+        var command = new AddPayLaterCommand(payLaterDTO);
+        var paylater = await _mediator.Send(command);
+        return Ok(paylater);
+    }
 
     [HttpGet("getEmployee/{employeeId}")]
     public async Task<ActionResult<EmployeeDTO>> getEmployee(int employeeId)
@@ -56,5 +63,13 @@ public class EmployeeController : ControllerBase
         var query = new GetAllSalarysQuery();
         var Salaries = await _mediator.Send(query);
         return Ok(Salaries);
+    }
+
+    [HttpGet("getAllPayLaters")]
+    public async Task<ActionResult<IEnumerable<PayLaterDTO>>> getAllPayLaters()
+    {
+        var query = new GetAllPayLatersQuery();
+        var payLaters = await _mediator.Send(query);
+        return Ok(payLaters);
     }
 }
