@@ -1,4 +1,5 @@
 using AutoMapper;
+using Data;
 
 public class CustomerProfile : Profile
 {
@@ -24,7 +25,7 @@ public class CustomerProfile : Profile
         CreateMap<ExpenseCategory, ExpenseCategoryDTO>().ReverseMap();
         CreateMap<ExpenseItem, ExpenseItemDTO>().ReverseMap();
         CreateMap<User, UserDTO>().ReverseMap();
-
+        CreateMap<EmployeeAttendance, EmployeeAttendanceDTO>().ReverseMap();
         // For complex nested mapping
         CreateMap<Inventory, InventoryDTO>()
             .ForMember(dest => dest.ItemDTO, opt => opt.MapFrom(src => src.Item))

@@ -23,6 +23,7 @@ namespace Data{
     public DbSet<Salary> Salarys { get; set; }
     public DbSet<PayLater> PayLaters { get; set; }
     public DbSet<Employee>? Employees { get; set; }
+    public DbSet<EmployeeAttendance>? EmployeeAttendances { get; set; }
     public DbSet<Client> Clients { get; set; }
     public DbSet<Tag> Tags { get; set; }
     public DbSet<TagItem> TagItems { get; set; }
