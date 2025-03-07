@@ -24,7 +24,7 @@ public class CheckOutCommandHandler : IRequestHandler<CheckOutCommand, EmployeeA
         if (attendance == null)
             throw new InvalidOperationException("No open check-in found for this employee.");
 
-        attendance.CheckOutTime = DateTime.UtcNow;
+        attendance.CheckOutTime = DateTime.Now;
         await _dbContext.SaveChangesAsync();
 
         return _mapper.Map<EmployeeAttendanceDTO>(attendance);

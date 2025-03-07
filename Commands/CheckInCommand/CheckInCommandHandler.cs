@@ -34,7 +34,7 @@ public class CheckInCommandHandler : IRequestHandler<CheckInCommand, EmployeeAtt
         var attendance = new EmployeeAttendance
         {
             EmployeeId = request.EmployeeId,
-            CheckInTime = DateTime.UtcNow
+            CheckInTime = DateTime.Now
         };
 
         _dbContext.EmployeeAttendances.Add(attendance);

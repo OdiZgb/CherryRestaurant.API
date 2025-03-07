@@ -58,10 +58,18 @@ public async Task<ActionResult<CheckInStatusDTO>> GetCheckInStatus(int employeeI
         .Where(a => a.EmployeeId == employeeId)
         .OrderByDescending(a => a.CheckInTime)
         .FirstOrDefaultAsync();
+        bool IsCheckedIn = false;
+    
+    if(lastCheckIn?.CheckOutTime == null){
+        IsCheckedIn = true;
 
+    }
+    if(lastCheckIn== null){
+        IsCheckedIn = false;
+    }
     return new CheckInStatusDTO
     {
-        IsCheckedIn = lastCheckIn?.CheckOutTime == null,
+        IsCheckedIn =IsCheckedIn ,
         LastCheckInTime = lastCheckIn?.CheckInTime
     };
 }
