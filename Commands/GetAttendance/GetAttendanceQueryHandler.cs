@@ -28,6 +28,7 @@ public class GetAttendanceQueryHandler : IRequestHandler<GetAttendanceQuery, IEn
             query = query.Where(a => a.CheckInTime < request.EndDate.Value.AddDays(1));
 
         var attendances = await query.ToListAsync();
-        return _mapper.Map<IEnumerable<EmployeeAttendanceDTO>>(attendances);
+        var at = _mapper.Map<IEnumerable<EmployeeAttendanceDTO>>(attendances).OrderByDescending(x=>x.CheckInTime);
+        return at;
     }
 }
