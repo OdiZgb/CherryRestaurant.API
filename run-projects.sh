@@ -9,7 +9,7 @@ start_api() {
 # Function to start the Angular client project
 start_client() {
     cd "C:\Users\odizg\OneDrive\Desktop\Projects\CherryRestaurant\CherryRestaurant-Client"
-    ng serve --host 192.168.1.99
+    ng serve --host 192.168.0.99
 }
 
 # Start both projects in parallel
@@ -18,3 +18,6 @@ start_client &
 
 # Wait for both processes to complete
 wait
+
+
+
